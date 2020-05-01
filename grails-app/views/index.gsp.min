@@ -1,0 +1,31 @@
+<!Doctype HTML>
+<html>
+	<head>
+		<title>testapp</title>
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#trigger").click(function() {
+					$.ajax({
+						url : "/testapp/test/divideTwoNums",
+						type : 'POST',
+						dataType : 'html',
+						data : { num1 : $("#num1").val(), num2 : $("#num2").val() },
+						success : function(data) {
+				        	alert(data);    
+						},
+						error: function(jqXHR, textStatus, errorThrown) {
+							alert("We are facing issues to process your request, please try again.");
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<%-- <a href="/testapp/test">Call TestController</a> --%>
+		<div>Num 1 : <input type="text" name="num1" id="num1" /></div>
+		<div>Num 2 : <input type="text" name="num2" id="num2" /></div>
+		<div><input type="button" id="trigger" value="Divide"/></div>
+	</body>
+</html>
